@@ -1,8 +1,9 @@
 package com.hsmnzaydn.termcommands.Category;
 
 
+import com.hsmnzaydn.termcommands.Category.service.CategoryService;
 import com.hsmnzaydn.termcommands.Command.Command;
-import com.hsmnzaydn.termcommands.Command.CommandService;
+import com.hsmnzaydn.termcommands.Command.service.CommandServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,12 @@ import java.util.List;
 public class CategoryAPI {
 
     private final CategoryService categoryService;
-    private final CommandService commandService;
+    private final CommandServiceImpl commandServiceImpl;
 
 
     @GetMapping
     public ResponseEntity<List<Category>> findAll() {
-        return ResponseEntity.ok(categoryService.findAll());
+        return ResponseEntity.ok(categoryService.findAllCategory());
     }
 
     @PostMapping
@@ -32,12 +33,11 @@ public class CategoryAPI {
     @GetMapping
     ResponseEntity<List<Command>> findAllCommandsOfCategory(@PathVariable Integer categoryId,
                                                             @RequestBody Command command) {
-
-        commandService.saveOrUpdateCommand(command);
+        commandServiceImpl.saveOrUpdateCommand(command);
         Category category = categoryService.findCategoryById(categoryId);
-        category.getCommandList().add(commandService.saveOrUpdateCommand(command));
+        category.getCommands().add(commandServiceImpl.saveOrUpdateCommand(command));
         categoryService.saveOrUpdateCategory(category);
 
-        return ResponseEntity.ok(categoryService.findAllCategoryCommands(categoryId));
+        return ResponseEntity.ok(categoryService.findAllCommandsOfCategory(categoryId));
     }
 }

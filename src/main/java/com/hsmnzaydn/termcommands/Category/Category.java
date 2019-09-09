@@ -3,8 +3,10 @@ package com.hsmnzaydn.termcommands.Category;
 
 import com.hsmnzaydn.termcommands.Command.Command;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,10 @@ public class Category {
     @Column
     @ElementCollection(targetClass=Command.class)
     private List<Command> commands;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdTime;
 
 
     public int getId() {
@@ -38,11 +44,19 @@ public class Category {
         this.categoryTitle = categoryTitle;
     }
 
-    public List<Command> getCommandList() {
+    public List<Command> getCommands() {
         return commands;
     }
 
-    public void setCommandList(List<Command> commandList) {
-        this.commands = commandList;
+    public void setCommands(List<Command> commands) {
+        this.commands = commands;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }
