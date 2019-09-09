@@ -2,9 +2,11 @@ package com.hsmnzaydn.termcommands.Command;
 
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,6 +20,9 @@ public class Command {
     private String commandTitle;
     private String description;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdTime;
 
 
     public String getDescription() {
@@ -42,5 +47,13 @@ public class Command {
 
     public void setCommandTitle(String commandTitle) {
         this.commandTitle = commandTitle;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }
