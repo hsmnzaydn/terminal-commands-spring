@@ -4,12 +4,14 @@ package com.hsmnzaydn.termcommands.Category;
 import com.hsmnzaydn.termcommands.Category.service.CategoryService;
 import com.hsmnzaydn.termcommands.Command.Command;
 import com.hsmnzaydn.termcommands.Command.service.CommandServiceImpl;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value="Category services", description="Include all category services")
 @RestController
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
