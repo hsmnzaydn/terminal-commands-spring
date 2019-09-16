@@ -8,13 +8,12 @@ import java.util.List;
 
 @Entity
 @Data
-public class User {
+public class ApplicationUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    private Application application;
+
 
     private String email;
     private String password;
@@ -28,13 +27,6 @@ public class User {
         this.id = id;
     }
 
-    public Application getApplication() {
-        return application;
-    }
-
-    public void setApplication(Application application) {
-        this.application = application;
-    }
 
     public String getEmail() {
         return email;

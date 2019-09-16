@@ -1,9 +1,9 @@
 package com.hsmnzaydn.termcommands.User.service;
 
-import com.hsmnzaydn.termcommands.User.User;
+import com.hsmnzaydn.termcommands.User.ApplicationUser;
 
 public interface UserService {
 
-    User findUserByEmail(String email);
-    User saveUser(User user);
+    ApplicationUser findUserByEmail(String email);
+    ApplicationUser saveUser(ApplicationUser applicationUser);
 }

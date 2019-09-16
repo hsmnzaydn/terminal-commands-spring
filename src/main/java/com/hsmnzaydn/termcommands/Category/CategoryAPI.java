@@ -13,7 +13,7 @@ import java.util.List;
 
 @Api(value="Category services", description="Include all category services")
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/api/secure/v1/categories")
 @RequiredArgsConstructor
 public class CategoryAPI {
 

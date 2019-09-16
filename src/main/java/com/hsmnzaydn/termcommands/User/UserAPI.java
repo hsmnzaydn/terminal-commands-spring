@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value="User services", description="Include all user services")
+@Api(value="ApplicationUser services", description="Include all user services")
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
@@ -17,12 +17,12 @@ public class UserAPI {
 
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        return ResponseEntity.ok(userService.saveUser(user));
+    public ResponseEntity<ApplicationUser> createUser(@RequestBody ApplicationUser applicationUser){
+        return ResponseEntity.ok(userService.saveUser(applicationUser));
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity<User> findUser(@PathVariable("email") String email){
+    public ResponseEntity<ApplicationUser> findUser(@PathVariable("email") String email){
         return ResponseEntity.ok(userService.findUserByEmail(email));
     }
 
