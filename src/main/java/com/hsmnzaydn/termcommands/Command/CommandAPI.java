@@ -11,7 +11,7 @@ import java.util.List;
 
 @Api(value="Command Services", description="Include all command services")
 @RestController
-@RequestMapping("/api/v1/commands")
+@RequestMapping("/api/secure/v1/commands")
 @RequiredArgsConstructor
 public class CommandAPI {
 
