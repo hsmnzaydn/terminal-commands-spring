@@ -19,8 +19,6 @@ public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
 
     @Override
     public ApplicationUser saveUser(ApplicationUser applicationUser) {
@@ -29,8 +27,14 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public ApplicationUser findUserByusername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         ApplicationUser applicationUser = userRepository.findUserByUsername(username);
+
         if (applicationUser == null) {
             throw new UsernameNotFoundException(username);
         }

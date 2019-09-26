@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import com.hsmnzaydn.termcommands.security.SecurityConstants;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
@@ -47,10 +48,16 @@ public class JwtTokenUtil implements Serializable {
 //3. According to JWS Compact Serialization(https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1)
 //   compaction of the JWT to a URL-safe string
     private String doGenerateToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+       /*  Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME * 1000))
-                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET).compact();
+                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET).compact();*/
+        return Jwts.builder()
+                .setSubject(subject)
+                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET.getBytes())
+                .compact();
     }
+
     //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);

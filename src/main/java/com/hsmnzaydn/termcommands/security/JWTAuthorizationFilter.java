@@ -1,6 +1,8 @@
 package com.hsmnzaydn.termcommands.security;
 
+import com.hsmnzaydn.termcommands.Utility.JwtTokenUtil;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest req,
