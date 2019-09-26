@@ -1,9 +1,9 @@
 package com.hsmnzaydn.termcommands.User.service;
 
 import com.hsmnzaydn.termcommands.User.ApplicationUser;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+public interface UserService  extends UserDetailsService {
 
-    ApplicationUser findUserByEmail(String email);
     ApplicationUser saveUser(ApplicationUser applicationUser);
 }

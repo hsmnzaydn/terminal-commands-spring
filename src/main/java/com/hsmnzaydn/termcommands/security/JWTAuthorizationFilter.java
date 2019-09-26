@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.hsmnzaydn.termcommands.security.SecurityConstants.*;
+import static com.hsmnzaydn.termcommands.security.SecurityConstants.HEADER_STRING;
+import static com.hsmnzaydn.termcommands.security.SecurityConstants.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -43,7 +44,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         if (token != null) {
             // parse the token.
             String user = Jwts.parser()
-                    .setSigningKey(SECRET.getBytes())
+                    .setSigningKey(SecurityConstants.SECRET.getBytes())
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
